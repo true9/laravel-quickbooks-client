@@ -19,7 +19,7 @@ class QuickBooks
             'baseUrl' => $config['data_service']['base_url'],
             'ClientID' => $config['data_service']['client_id'],
             'ClientSecret' => $config['data_service']['client_secret'],
-            'RedirectURI' => $config['redirect_url'],
+            'RedirectURI' => route('quickbooks.token'),
             'scope' => $config['data_service']['scope']
         ];
 

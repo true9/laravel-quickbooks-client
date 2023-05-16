@@ -3,6 +3,7 @@
 namespace true9\QuickBooks\Providers;
 
 use Illuminate\Filesystem\FilesystemManager;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use true9\QuickBooks\Credentials;
@@ -54,16 +55,18 @@ class QuickBooksServiceProvider extends ServiceProvider
 
     protected function registerRoutes()
     {
-        Route::group($this->routeConfiguration(), function () {
+        Route::group([
+            'prefix' => 'api/quickbooks',
+            'middleware' => ['api', 'auth:sanctum']
+        ], function () {
             $this->loadRoutesFrom(__DIR__ . '/../../routes/api.php');
         });
-    }
 
-    protected function routeConfiguration()
-    {
-        return [
-            'prefix' => 'api',
-            'middleware' => ['api']
-        ];
+        Route::group([
+            'prefix' => 'quickbooks',
+            // 'middleware' => ['auth']
+        ], function () {
+            $this->loadRoutesFrom(__DIR__ . '/../../routes/web.php');
+        });
     }
 }

@@ -10,9 +10,7 @@ class QuickBooksController extends Controller
 {
     public function connect(QuickBooks $quickBooks)
     {
-        return response([
-            'redirect_url' => $quickBooks->getAuthorizationUrl()
-        ]);
+        return redirect($quickBooks->getAuthorizationUrl());
     }
 
     public function disconnect(Credentials $credentials)
@@ -31,7 +29,7 @@ class QuickBooksController extends Controller
 
         $credentials->store($token);
 
-        return response()->noContent();
+        return redirect(config('quickbooks.redirect_url'));
     }
 
     public function status(Credentials $credentials, QuickBooks $quickBooks)

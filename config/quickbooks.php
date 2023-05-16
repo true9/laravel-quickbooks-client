@@ -39,10 +39,10 @@ return [
     | Redirect URLs
     |--------------------------------------------------------------------------
     |
-    | Return URI that QuickBooks sends code to allow getting OAuth token
+    | The URL users are redirected to following a connection attempt.
     |
     */
 
-    'redirect_url' => env('QUICKBOOKS_REDIRECT_URL', config('app.url') . '/api/quickbooks/token')
+    'redirect_url' => env('QUICKBOOKS_REDIRECT_URL', config('app.url') . '/quickbooks/status')
 
 ];
