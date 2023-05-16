@@ -43,8 +43,7 @@ class QuickBooksController extends Controller
         }
 
         return response([
-            'connected' => false,
-            'redirect_url' => $quickBooks->getAuthorizationUrl()
+            'connected' => false
         ]);
     }
 }
