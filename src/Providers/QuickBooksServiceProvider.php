@@ -33,11 +33,13 @@ class QuickBooksServiceProvider extends ServiceProvider
             if ($credentials->exists()) {
                 $quickBooks->setRealmId($credentials->getRealmId());
                 $quickBooks->setRefreshToken($credentials->getRefreshToken());
-                $quickBooks->setAccessToken($credentials->getAccessToken());
 
                 if ($credentials->isExpired()) {
+                    $quickBooks->setAccessToken(null);
                     $credentials->store($quickBooks->getAccessToken());
                 }
+
+                $quickBooks->setAccessToken($credentials->getAccessToken());
             }
 
             return $quickBooks;
