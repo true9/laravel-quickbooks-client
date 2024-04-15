@@ -36,7 +36,7 @@ class QuickBooksServiceProvider extends ServiceProvider
 
                 if ($credentials->isExpired()) {
                     $quickBooks->setAccessToken(null);
-                    $credentials->store($quickBooks->getAccessToken());
+                    $credentials->store($quickBooks->refreshAccessToken());
                 }
 
                 $quickBooks->setAccessToken($credentials->getAccessToken());

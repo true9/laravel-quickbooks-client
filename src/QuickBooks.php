@@ -2,6 +2,7 @@
 
 namespace true9\QuickBooks;
 
+use QuickBooksOnline\API\Core\OAuth\OAuth2\OAuth2AccessToken;
 use QuickBooksOnline\API\DataService\DataService;
 
 class QuickBooks
@@ -78,6 +79,13 @@ class QuickBooks
     }
 
     public function getAccessToken()
+    {
+        return $this->getDataService()
+            ->getOAuth2LoginHelper()
+            ->getAccessToken();
+    }
+
+    public function refreshAccessToken(): OAuth2AccessToken
     {
         return $this->getDataService()
             ->getOAuth2LoginHelper()
