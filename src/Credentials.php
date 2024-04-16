@@ -2,13 +2,14 @@
 
 namespace true9\QuickBooks;
 
-use Illuminate\Filesystem\FilesystemManager;
 use Illuminate\Contracts\Filesystem\Filesystem;
+use Illuminate\Filesystem\FilesystemManager;
 use QuickBooksOnline\API\Core\OAuth\OAuth2\OAuth2AccessToken;
 
 class Credentials
 {
     protected Filesystem $disk;
+
     protected string $filePath;
 
     public function __construct(FilesystemManager $storage)
@@ -55,7 +56,7 @@ class Credentials
 
     public function delete()
     {
-        if (!$this->exists()) {
+        if (! $this->exists()) {
             throw new \Exception('QuickBooks credentials are missing');
         }
 
@@ -69,17 +70,17 @@ class Credentials
             'access_token_expires_at' => strtotime($token->getAccessTokenExpiresAt()),
             'realm_id' => $token->getRealmID(),
             'refresh_token' => $token->getRefreshToken(),
-            'refresh_token_expires_at' => strtotime($token->getRefreshTokenExpiresAt())
+            'refresh_token_expires_at' => strtotime($token->getRefreshTokenExpiresAt()),
         ]));
 
-        if (!$result) {
-            throw new \Exception('Failed to write to file: ' . $this->filePath);
+        if (! $result) {
+            throw new \Exception('Failed to write to file: '.$this->filePath);
         }
     }
 
     protected function data($key = null)
     {
-        if (!$this->exists()) {
+        if (! $this->exists()) {
             throw new \Exception('QuickBooks credentials are missing');
         }
 

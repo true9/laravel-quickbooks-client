@@ -16,7 +16,7 @@ return [
         'base_url' => env('QUICKBOOKS_API_URL', config('app.env') === 'production' ? 'Production' : 'Development'),
         'client_id' => env('QUICKBOOKS_CLIENT_ID'),
         'client_secret' => env('QUICKBOOKS_CLIENT_SECRET'),
-        'scope' => 'com.intuit.quickbooks.accounting'
+        'scope' => 'com.intuit.quickbooks.accounting',
     ],
 
     /*
@@ -31,7 +31,7 @@ return [
 
     'logging' => [
         'enabled' => env('QUICKBOOKS_DEBUG', config('app.debug')),
-        'location' => storage_path('logs')
+        'location' => storage_path('logs'),
     ],
 
     /*
@@ -43,6 +43,6 @@ return [
     |
     */
 
-    'redirect_url' => env('QUICKBOOKS_REDIRECT_URL', config('app.url') . '/quickbooks/status')
+    'redirect_url' => env('QUICKBOOKS_REDIRECT_URL', config('app.url').'/quickbooks/status'),
 
 ];

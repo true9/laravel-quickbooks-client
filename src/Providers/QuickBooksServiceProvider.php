@@ -3,7 +3,6 @@
 namespace true9\QuickBooks\Providers;
 
 use Illuminate\Filesystem\FilesystemManager;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use true9\QuickBooks\Credentials;
@@ -19,7 +18,7 @@ class QuickBooksServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../../config/quickbooks.php', 'quickbooks');
+        $this->mergeConfigFrom(__DIR__.'/../../config/quickbooks.php', 'quickbooks');
 
         $this->app->bind(Credentials::class, function ($app) {
             return new Credentials($app->make(FilesystemManager::class));
@@ -50,7 +49,7 @@ class QuickBooksServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__ . '/../../config/quickbooks.php' => config_path('quickbooks.php'),
+                __DIR__.'/../../config/quickbooks.php' => config_path('quickbooks.php'),
             ], 'config');
         }
     }
@@ -59,16 +58,16 @@ class QuickBooksServiceProvider extends ServiceProvider
     {
         Route::group([
             'prefix' => 'api/quickbooks',
-            'middleware' => ['api', 'auth:sanctum']
+            'middleware' => ['api', 'auth:sanctum'],
         ], function () {
-            $this->loadRoutesFrom(__DIR__ . '/../../routes/api.php');
+            $this->loadRoutesFrom(__DIR__.'/../../routes/api.php');
         });
 
         Route::group([
             'prefix' => 'quickbooks',
             // 'middleware' => ['auth']
         ], function () {
-            $this->loadRoutesFrom(__DIR__ . '/../../routes/web.php');
+            $this->loadRoutesFrom(__DIR__.'/../../routes/web.php');
         });
     }
 }

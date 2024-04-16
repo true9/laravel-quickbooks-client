@@ -34,16 +34,16 @@ class QuickBooksController extends Controller
 
     public function status(Credentials $credentials, QuickBooks $quickBooks)
     {
-        if ($credentials->exists() && !$credentials->isExpired()) {
+        if ($credentials->exists() && ! $credentials->isExpired()) {
             return response([
                 'connected' => true,
                 'expires' => $credentials->getExpires(),
-                'company_info' => $quickBooks->getDataService()->getCompanyInfo()
+                'company_info' => $quickBooks->getDataService()->getCompanyInfo(),
             ]);
         }
 
         return response([
-            'connected' => false
+            'connected' => false,
         ]);
     }
 }

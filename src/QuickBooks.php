@@ -8,7 +8,9 @@ use QuickBooksOnline\API\DataService\DataService;
 class QuickBooks
 {
     protected $config = [];
+
     protected $logging = false;
+
     protected $loggingLocation = null;
 
     public function __construct()
@@ -21,7 +23,7 @@ class QuickBooks
             'ClientID' => $config['data_service']['client_id'],
             'ClientSecret' => $config['data_service']['client_secret'],
             'RedirectURI' => route('quickbooks.token'),
-            'scope' => $config['data_service']['scope']
+            'scope' => $config['data_service']['scope'],
         ];
 
         $this->logging = $config['logging']['enabled'] ?? false;
